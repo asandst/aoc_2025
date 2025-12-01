@@ -1,11 +1,10 @@
 fn main() {
-    let lines = include_str!("../../input_day1_test")
+    let lines = include_str!("../../input_day1")
         .lines();
 
     let mut absolute_dir = 50;
 
     let mut part1 = 0;
-
     let mut part2 = 0;
 
     for line in lines {
@@ -18,38 +17,25 @@ fn main() {
             &_ => panic!("invalid input")
         };
 
-        println!("line: {}", line);
+        if absolute_dir == 0 && dir_as_mul == -1 {
+            part2 -= 1;
+        }
 
-        let mut ignore_once = absolute_dir == 0;
         absolute_dir = absolute_dir + dir_as_mul * amount;
 
-        if absolute_dir == 0{
-            part2 +=1;
-            println!("c1 {}", line);
-        }
-
-        while absolute_dir < 0{
+        while absolute_dir < 0 {
             absolute_dir += 100;
-
-            if !ignore_once{
-                part2 +=1;
-                println!("c2 {}", line);
-            } else {
-                ignore_once = false;
-            }
-
-        }
-
-        while absolute_dir > 99{
-            absolute_dir -= 100;
-
             part2 +=1;
-            println!("c3 {}", line);
         }
 
-        //absolute_dir = (absolute_dir + dir_as_mul * amount).rem_euclid(100);
+        while absolute_dir > 99 {
+            absolute_dir -= 100;
+            part2 +=1;
+        }
 
-        println!("dir {}", absolute_dir);
+        if absolute_dir == 0 && dir_as_mul == -1 {
+            part2 += 1;
+        }
 
         if absolute_dir == 0 {
             part1 += 1;
