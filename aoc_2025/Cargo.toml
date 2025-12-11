@@ -5,3 +5,5 @@ edition = "2024"
 
 [dependencies]
 itertools = "0.14.0"
+geo-types = "0.7.18"
+geo = "0.32.0"
